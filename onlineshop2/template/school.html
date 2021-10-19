@@ -1,0 +1,58 @@
+{% extends 'parent.html' %}
+{% block content %}
+<div class="page-container">
+    <div class="main-content">
+        <div class="section__content section__content--p30">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card shadow">
+                            <div class="card-header bg-primary">
+                                <h3 class=" text-white">School Management</h3>
+                            </div>
+                            <div class="card-body">
+                                <p class="text-right mb-3">
+                                    <a href="/insert_school/" class="btn btn-primary">Add School</a>
+                                </p>
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Regsiteridate</th>
+                                                <th>islive</th>
+                                                <th>language</th>
+                                                <th class="text-center">Edit</th>
+                                                <th class="text-center">Delete</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                           {% for row in table %}
+                                            <tr>
+                                                <td>{{ row.name }}</td>
+                                                <td>{{ row.registerdate}}</td>
+                                                <td>{{ row.islive}}</td>
+                                                <td>{{ row.language}}</td>
+                                                <td width='10%' class="text-center">
+                                                    <a href="/edit_school/{{ row.id }}"><span class="fa fa-edit"></span></a>
+                                                </td>
+                                                <td width='10%' class="text-center">
+                                                    <a href="/delete_school/{{ row.id }}"><span class="fa fa-trash"></span></a>
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
+   

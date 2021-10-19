@@ -1,0 +1,81 @@
+{% extends 'frontend_parent.html' %}
+{% load static %}
+
+{% block content %}
+<div class="hero-wrap hero-bread" style="background-image:url({% static 'frontend_theme/images/xbg_6.jpg.pagespeed.ic.FoMmN96gAy.jpg' %})">
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <h1 class="mb-0 bread">My Cart</h1>
+               
+            </div>
+        </div>
+    </div>
+</div>
+<section class="ftco-section ftco-cart">
+    <div class="container">
+        {% if out_of_stock %}
+            <h3>following items are out of stock please remove it from cart</h3>
+            <ul>
+            {% for item in out_of_stock %}
+                <li>{{item.1 }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% if message %}
+            <h3>your order is placed successfully. </h3>
+            <h4>your order id is {{orderid}}</h4>
+        {% endif %}
+        <div class="row">
+            <div class="col-md-12 ftco-animate">
+                <div class="cart-list">
+                    <table class="table">
+                        <thead class="thead-primary">
+                            <tr class="text-center">
+                                <th>&nbsp;</th>
+                                <th>&nbsp;</th>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cart">
+                                {% for row in table %}
+                                    <tr class="text-center">
+                                        <td data-cartid="{{row.cartid}}" class="btnremovefromcart" style="cursor:pointer;"><span class="ion-ios-close">Delete</span></td>
+                                        <td class="image-prod">
+                                            <img class="img-fluid img-thumbnail  shadow " src="http://127.0.0.1:8000/media/{{row.photo}}" >
+                                        </td>
+                                        <td class="product-name">
+                                            <h3>{{ row.name }}</h3>
+                                        </td>
+                                        <td class="price">{{ row.price }}</td>
+                                        <td class="quantity">
+                                            {{ row.cart_quantity }}
+                                            </div>
+                                        </td>
+                                        <td class="total">{{ row.total }}</td>
+                                    </tr>
+                                {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-end">
+            <div class="col col-lg-5 col-md-6 mt-5 cart-wrap ftco-animate">
+                <div class="cart-total mb-3">
+                    <h3>Cart Totals</h3>
+                    <p class="d-flex total-price">
+                        <span>Total</span>
+                        <span id="grandtotal"></span>
+                    </p>
+                </div>
+                <p class="text-center"><a href="checkout" class="btn btn-primary py-3 px-4">Proceed to Checkout</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

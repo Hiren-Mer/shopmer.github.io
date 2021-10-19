@@ -1,0 +1,41 @@
+{% extends 'parent.html' %}
+{% block content %}
+<!-- PAGE CONTAINER-->
+<div class="page-container">
+    <div class="main-content">
+        <div class="section__content section__content--p30">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card shadow">
+                            <div class="card-header bg-primary">
+                                <h3 class=" text-white">Triangle Pattern</h3>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-striped" width='100%'>
+                                    <tbody>
+                                        <tr>
+                                            <td width='30%'>FIRST VALUE</td>
+                                            <td>{{num1}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td width='30%'>SECOND VALUE</td>
+                                            <td>{{num}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td width='30%'>triangle</td>
+                                            <td>{{BODY}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

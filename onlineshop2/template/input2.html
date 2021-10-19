@@ -1,0 +1,54 @@
+{% extends 'parent.html' %}
+{% block content %}
+<!-- PAGE CONTAINER-->
+<div class="page-container">
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                           <div class="col-12">
+                            <div class="card shadow">
+                                <div class="card-header bg-primary">
+                                    <h3 class=" text-white">Maths Calculator</h3> <hr>
+                                    <h5 class="text-white">post method demo</h5>
+                                </div>
+                                <div class="card-body">
+                                  <form action="/maths_post/" method="post">
+                                      {% csrf_token %}
+                                      <div class="form-group">
+                                          <label for="txtfirst">First Number</label>
+                                          <input type="number" name="txtfirst" id="txtfirst" placeholder="First Number" class="form-control" required />
+                                      </div>
+                                       <div class="form-group">
+                                          <label for="txtrate">Second Number</label>
+                                          <input type="number" name="txtsecond" id="txtsecond" placeholder="Second Number" class="form-control" required />
+                                      </div>
+                                       <div class="radio">
+                                          <label>
+                                              <input type="radio" name="rdochoice" value="1" required /> Addition
+                                          </label>
+                                          <label>
+                                              <input type="radio" name="rdochoice" value="2" required /> Substraction
+                                          </label>
+                                          <label>
+                                              <input type="radio" name="rdochoice" value="3" required /> Multiplication
+                                          </label>
+                                          <label>
+                                              <input type="radio" name="rdochoice" value="4" required /> Division
+                                          </label>
+                                          
+                                      </div>
+                                      <div class="form-group">
+                                          <input type="submit" name="btnsubmit"  value="Calculate" class="btn btn-primary" />
+                                      </div>
+                                  </form>
+                                </div>
+                             </div>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

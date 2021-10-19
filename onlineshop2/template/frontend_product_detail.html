@@ -1,0 +1,33 @@
+{% extends 'frontend_parent.html' %}
+{% load static %}
+
+{% block content %}
+<div class="hero-wrap hero-bread" style="background-image:url({% static 'frontend_theme/images/xbg_6.jpg.pagespeed.ic.FoMmN96gAy.jpg' %}) ">
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <h1 class="mb-0 bread">{{ product.name }}</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="ftco-section bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 mb-5 ftco-animate">
+                <a href="images/menu-2.html" class="image-popup"><img
+                        src="http://127.0.0.1:8000/media/{{ product.photo }}" class="img-fluid"
+                        alt="Colorlib Template"></a>
+            </div>
+            <div class="col-lg-6 product-details pl-md-5 ftco-animate">
+                <h3>{{ product.name }}</h3>
+                    <p class="price"><span>{{ product.price }}</span></p>
+                    <p> {{ product.detail }}
+                </p>
+                <p><button type="button" class="btnaddtocart btn btn-primary py-3 px-5" data-productid="{{ product.id }}">Add to Cart</button></p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ajax code in in frontend_parent.html -->
+{% endblock %}

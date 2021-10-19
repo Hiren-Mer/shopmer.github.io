@@ -1,0 +1,56 @@
+{% extends 'parent.html' %}
+{% block content %}
+<!-- PAGE CONTAINER-->
+<div class="page-container">
+    <div class="main-content">
+        <div class="section__content section__content--p30">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card shadow">
+                            <div class="card-header bg-primary">
+                                <h3 class=" text-white">Product Management</h3>
+                            </div>
+                            <div class="card-body">
+                                <p class="text-right mb-3">
+                                    <a href="/insert_product/" class="btn btn-primary">Add Product</a>
+                                </p>
+<div class="row">  
+  {% for row in table %}
+    <div class="col-lg-3 col-md-4 col-sm-6 col-12 border shadow p-2 ml-2 mr-2">
+        {{row.name}} {{table.length}} <br>
+        Rs - {{row.price}} <br>
+        Qty - {{row.quantity}}  <br>
+        Belongs to -  {{row.categoryid}} <br>
+        Available / No Available  {{row.islive}}<br>            
+        <img class="img-fluid img-thumbnail  shadow " width=100% src="http://127.0.0.1:8000/media/{{row.photo}}"> <br>
+        <div class="d-flex justify-content-between">
+            <div class="p-2">
+                <a href="/edit_product/{{ row.id }}" title='Edit'><span class="fa fa-edit"></span></a>
+            </div>
+            <div class="p-2">
+                <a href="/delete_product/{{ row.id }}" title='Delete'><span class="fa fa-trash"></span></a>
+            </div>
+            <div class="p-2">
+                <a href="<a href={% url 'products' %}</a>" title='View Detail'><span class="fa fa-eye"></span></a>
+            </div>
+          </div>
+    </div>
+    {% empty %}
+        <div class="col-12">
+            <p class="text-center text-danger">No Product Found</p>
+        </div> 
+  {% endfor %}
+                                                </div>                                    
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

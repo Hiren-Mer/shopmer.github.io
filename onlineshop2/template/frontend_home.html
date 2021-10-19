@@ -1,0 +1,156 @@
+{% extends 'frontend_parent.html' %}
+{% load static %}
+{% block content %}
+<div class="hero-wrap js-fullheight"
+    style="background-image:url({% static 'frontend_theme/images/xbg_1.jpg.pagespeed.ic.uQKaY8z_Cc.jpg' %})">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+            <h3 class="vr">Since - 2021</h3>
+            <div class="col-md-11 ftco-animate text-center">
+                <h1>Shop With Us</h1>
+                <h2><span>Wear Your Dress</span></h2>
+            </div>
+            <div class="mouse">
+                <a href="#" class="mouse-icon">
+                    <div class="mouse-wheel"><span class="ion-ios-arrow-down"></span></div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="ftco-section ftco-product">
+    <div class="container">
+        <div class="row justify-content-center mb-3 pb-3">
+            <div class="col-md-12 heading-section text-center ftco-animate">
+                <h1 class="big">Trending</h1>
+                <h2 class="mb-4">Trending</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-slider owl-carousel ftco-animate">
+                    <div class="item">
+                        <div class="product">
+                            <a href="#" class="img-prod"><img class="img-fluid"
+                                    src="{% static 'frontend_theme/images/xproduct-1.jpg.pagespeed.ic.Ydimmp9gdt.jpg' %}">
+                            </a>
+                            <div class="text pt-3 px-3">
+                                <h3><a href="#">Young Woman Wearing Dress</a></h3>
+                                <div class="d-flex">
+                                    <div class="pricing">
+                                        <p class="price"><span class="price-sale">$80.00</span></p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="ftco-section">
+    <div class="container">
+    <div class="row justify-content-center mb-3 pb-3">
+            <div class="col-md-12 heading-section text-center ftco-animate">
+                <h1 class="big">Products</h1>
+                <h2>Recent Products</h2>
+            </div>
+        </div>
+        <div class="row">
+            {% for prod in products %}
+            <div class="col-sm col-md-6 col-lg-3 ftco-animate">
+                <div class="products">
+                    <a href="product_detail/{{prod.0}}" class="img-prod"><img class="img-fluid"
+                            src="http://127.0.0.1:8000/media/{{prod.2}}">
+                    </a>
+                    <div class="text py-3 px-3">
+                        <h4 class="text-center"><a href="product_detail/{{prod.0}}"></a>{{prod.3}}</a></h4>
+                        <h4 class="text-center"><a href="product_detail/{{prod.0}}"></a>{{prod.1}}</a></h4>
+                        
+                    </div>  
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<section class="ftco-section ftco-section-more img"
+    style="background-image:url({% static 'frontend_theme/images/xbg_5.jpg.pagespeed.ic.wbnVPrTqoo.jpg' %})">
+    <div class="container">
+        <div class="row justify-content-center mb-3 pb-3">
+            <div class="col-md-12 heading-section ftco-animate">
+                <h2>Summer Sale</h2>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="ftco-section testimony-section bg-light">
+    <div class="container">
+        <div class="row justify-content-center mb-3 pb-3">
+            <div class="col-md-12 heading-section text-center ftco-animate">
+                <h1 class="big">Testimony</h1>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-8 ftco-animate">
+                <div class="row ftco-animate">
+                {% for blog in testimonial %}
+                    <div class="col-md-12">
+                        <div class="carousel-testimony owl-carousel ftco-owl">
+                            <div class="item">
+                                <div class="testimony-wrap py-4 pb-5">
+                                    <div class="user-img mb-4">
+                                     <a href="frontend_testimonial/{{blog.0}}" class="img-prod"><img class="img-fluid"
+                                        src="http://127.0.0.1:8000/media/{{blog.2}}">
+                                     </a>
+                                        <span class="d-flex align-items-center justify-content-center">
+                                            
+                                        </span>
+                                    </div>
+                                    <div class="text text-center">
+                                        <p class="mb-4">customer feedback goes here</p>
+                                        <p class="name"><a href="frontend_testimonial/{{blog.0}}"></a>{{blog.1}}</p>
+                                        <span class="position"><a href="frontend_testimonial/{{blog.0}}"></a>{{blog.3}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="ftco-section">
+    <div class="container">
+    <div class="row justify-content-center mb-3 pb-3">
+            <div class="col-md-12 heading-section text-center ftco-animate">
+                <h1 class="big">Blog</h1>
+                <h2>Recent Blog</h2>
+            </div>
+        </div>
+        <div class="row">
+            {% for blog in blogs %}
+            <div class="col-sm col-md-6 col-lg-3 ftco-animate">
+                <div class="blog">
+                    <a href="blog_detail/{{blog.0}}" class="img-prod"><img class="img-fluid"
+                            src="http://127.0.0.1:8000/media/{{blog.5}}">
+                    </a>
+                    <div class="text py-3 px-3">
+                        <h4 class="text-center"><a href="blog_detail/{{blog.0}}"></a>{{blog.1}}</a></h4>
+                        <h4 class="text-center"><a href="blog_detail/{{blog.0}}"></a>{{blog.2}}</a></h4>
+                        <h4 class="text-center"><a href="blog_detail/{{blog.0}}"></a>{{blog.3}}</a></h4>
+                    </div>  
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

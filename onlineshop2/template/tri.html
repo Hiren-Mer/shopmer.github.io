@@ -1,0 +1,39 @@
+{% extends 'parent.html' %}
+{% block content %}
+<!-- PAGE CONTAINER-->
+<div class="page-container">
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                           <div class="col-12">
+                            <div class="card shadow">
+                                <div class="card-header bg-primary">
+                                    <h3 class=" text-white">Triangle Pattern</h3>
+                                    
+                                </div>
+                                <div class="card-body">
+                                  <form action="/triget/" method="post">
+                                        {% csrf_token %}
+                                      <div class="form-group">
+                                          <label for="txtnum1">Enter the First</label>
+                                          <input type="number" name="txtnum1" id="txtnum1" placeholder="do not allowe zero" class="form-control" required />
+                                      </div>
+                                       <div class="form-group">
+                                          <label for="txtnum">Enter the Second</label>
+                                          <input type="number" name="txtnum" id="txtnum" placeholder="do not allowe zero" class="form-control" required />
+                                      </div>
+                                      <div class="form-group">
+                                          <input type="submit" name="btnsubmit"  value="Genrate Triangle" class="btn btn-primary" />
+                                      </div>
+                                  </form>
+                                </div>
+                             </div>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

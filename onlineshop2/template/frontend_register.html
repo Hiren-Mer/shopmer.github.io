@@ -1,0 +1,61 @@
+{% extends 'frontend_parent.html' %}
+{% load static %}
+{% block content %}
+<div class="hero-wrap hero-bread"
+    style="background-image:url({% static 'frontend_theme/images/xbg_6.jpg.pagespeed.ic.FoMmN96gAy.jpg' %})">
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <h1 class="mb-0 bread">Register</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-8 ftco-animate">
+                <form action="" method="post" class="billing-form bg-light p-3 p-md-5">
+                     {% csrf_token %}
+                   <h3 class="mb-4 billing-heading">Register</h3>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="txtemail">Email</label>
+                                <input type="email" class="form-control" placeholder="Registered Email Addresss" required name="txtemail" >
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="txtmobile">Mobile</label>
+                                <input type="number" class="form-control" placeholder="Mobile" required name="txtmobile" >
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="txtpassword">Password</label>
+                                <input type="password" class="form-control" placeholder="Password" required name="txtpassword" >
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="txtpassword2">Confirm Password</label>
+                                <input type="password" class="form-control" placeholder="Confirm Password" required name="txtconfirmpassword" >
+                            </div>
+                        </div>    
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input type="submit" class="mybutton" value="Register" value="">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            {{ message }}
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'parent.html' %}
+{% block content %}
+<!-- PAGE CONTAINER-->
+<div class="page-container">
+    <div class="main-content">
+        <div class="section__content section__content--p30">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card shadow">
+                            <div class="card-header bg-primary">
+                                <h3 class=" text-white">Simple calculator </h3>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-striped table-bordered" width='100%'>
+                                    <tbody>
+                                        <tr>
+                                            <td>First value</td>
+                                            <td>Second value</td>
+                                            <td>operation</td>
+                                            <td>result</td>
+                                        </tr>
+                                        <tr>
+                                            <td>{{first}}</td>
+                                            <td>{{second}}</td>
+                                            <td>{{operation}}</td>
+                                            <td>{{result}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

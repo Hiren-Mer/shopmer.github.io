@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>get demo</title>
+</head>
+
+<body>
+    <table border="2" cellpadding=10 align=center width='80%'>
+        <tr>
+            <td>
+                <form action="" method="post" id="myform">
+                    {% csrf_token %}
+                    <input type="text" placeholder="Search Product" id="txtproduct" name="txtproduct">
+                    <input type="button" id="btnsearch" value="Search Product">
+                    <input type="button" id="btnadd" value="Add Product">
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td align="center" id="output">
+                output will come here
+            </td>
+        </tr>
+    </table>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        var productid;
+        $(document).ready(function () {
+            //ajax get method
+            $("#btnsearch").click(function () {
+                var url = "{% url 'postmethoddemo' %}";
+                $.post(url, $("#myform").serialize(), function (response, status) {
+                    console.log(response);
+                    var size = response.length;
+                    var position = 0;
+                    var table = "<table border='2' align='center' width='80%' cellpadding='5'>";
+                    while (position < size) {
+                        var name = response[position].name;
+                        var price = response[position].price;
+                        var quantity = response[position].quantity;
+                        var productid = response[position].id;
+                        table += "<tr><td>" + name + "</td><td>" + price + "</td><td>" + quantity + "</td><td data-id='" + productid + "' style='cursor:pointer;color:blue' class='delete'>Delete</td><td class='edit' data-id='" + productid + "' style='cursor:pointer;color:blue'>Edit</td></tr>";
+                        position++;
+                    }
+                    table += "</table>";
+                    $("#output").html(table);
+                });
+
+            });
+
+            $("#output").on("click", ".delete", function () {
+                var row = $(this).parent();
+                var productid = $(this).attr("data-id");
+                var url = "{% url 'deletemethoddemo' %}";
+                var data = {}; //empty object
+                data['productid'] = productid;
+                $.get(url, data, function (response, status) {
+                    $(row).remove();
+                });
+            });
+
+            $("#output").on("click", ".edit", function () {
+                var row = $(this).parent();
+                productid = $(this).attr("data-id");
+                console.log("productid");
+                var name = $(row).find("td").eq(0).html();
+                var price = $(row).find("td").eq(1).html();
+                var quantity = $(row).find("td").eq(2).html();
+                //console.log(name + " " + price + " " + quantity);
+                var nameinput = "<input type='text' name='txtname' value='" + name + "' />";
+                var priceinput = "<input type='number' name='txtprice' value='" + price + "' />";
+                var quantityinput = "<input type='number' name='txtquantity' value='" + quantity + "' />";
+                var button = "<input type='button' id='btnsave' value='Save changes' />";
+                $(row).find("td").eq(0).html(nameinput);
+                $(row).find("td").eq(1).html(priceinput);
+                $(row).find("td").eq(2).html(quantityinput);
+                $(row).find("td").eq(3).html("");
+                $(row).find("td").eq(4).html(button);
+                $(this).removeClass("edit");
+            });
+
+            $("#output").on("click", "#btnsave", function () {
+                var name = $("input[name='txtname']").val();
+                var price = $("input[name='txtprice']").val();
+                var quantity = $("input[name='txtquantity']").val();
+                var row = $(this).parent().parent();
+                console.log(name + " " + price + " " + quantity + " " + productid);
+                //send get request with data 
+
+                var url = "{% url 'updateproductusingajax' %}";
+                var data = {}; //empty object
+                data['productid'] = productid;
+                data['name'] = name;
+                data['price'] = price;
+                data['quantity'] = quantity;
+                $.get(url, data, function (response, status) {
+                    console.log(response);
+                    $(row).find("td").eq(0).html(name);
+                    $(row).find("td").eq(1).html(price);
+                    $(row).find("td").eq(2).html(quantity);
+                    $(row).find("td").eq(3).html("delete");
+                    $(row).find("td").eq(4).html("edit");
+                    $(row).find("td").eq(4).addClass("edit");
+                });
+            });
+
+            $("#btnadd").click(function()
+            {
+                var table = "<table border='1' align='center' width='80%'><tr><td><input type='text' name='txtname2' placeholder='enter product name' /></td><td><input type='text' name='txtprice2' placeholder='enter product price' /></td><td><input type='text' name='txtquantity2' placeholder='enter product quantity' /></td><td><input type='button' id='btninsert' value='Add new product' /></td></tr></table>";
+                $("#output").prepend(table);
+            });
+
+            $("#output").on("click","#btninsert",function(){
+               var table = $(this).parent().parent().parent(); 
+               var name = $("input[name='txtname2']").val();
+               var price = $("input[name='txtprice2']").val();
+               var quantity = $("input[name='txtquantity2']").val();
+               //console.log(name + " " + price + " " + quantity);
+               var url = "{% url 'insertusingajaxdemo' %}";
+                var data = {}; //empty object
+                data['name'] = name;
+                data['price'] = price;
+                data['quantity'] = quantity;
+                $.get(url, data, function (response, status) {
+                    console.log(response + " " + status);
+                    $(table).remove();
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

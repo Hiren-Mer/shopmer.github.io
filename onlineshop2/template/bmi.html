@@ -1,0 +1,38 @@
+{% extends 'parent.html' %}
+{% block content %}
+<!-- PAGE CONTAINER-->
+<div class="page-container">
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                           <div class="col-12">
+                            <div class="card shadow">
+                                <div class="card-header bg-primary">
+                                    <h3 class=" text-white">BMI Calculator</h3>
+                                </div>
+                                <div class="card-body">
+                                  <form action="/bmiinterest/" method="post">
+                                      {% csrf_token %}
+                                      <div class="form-group">
+                                          <label for="weight">Your Body Weight(Kg)</label>
+                                          <input type="number" name="weight" id="weight" placeholder=" Enter your body weight" class="form-control" required />
+                                      </div>
+                                       <div class="form-group">
+                                          <label for="height">Your Body Height(cm)</label>
+                                          <input type="number" name="height" id="height" placeholder="Enter your body height" class="form-control" required />
+                                      </div>
+                                      <div class="form-group">
+                                          <input type="submit" name="btnsubmit"  value="Calculate BMI" class="btn btn-primary" />
+                                      </div>
+                                  </form>
+                                </div>
+                             </div>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

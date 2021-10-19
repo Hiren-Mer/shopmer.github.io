@@ -1,0 +1,141 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
+  <link rel="stylesheet"
+    href="{% static 'frontend_theme/css/open-iconic-bootstrap.min.css+animate.css+owl.carousel.min.css+owl.theme.default.min.css+magnific-popup.css+aos.css+ionicons.min.css+bootstrap-datepicker.css' %}" />
+    {% comment %} <link rel="stylesheet" href="{% static 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' %}"> {% endcomment %}
+           {% comment %} <a href="https://fontawesome.com/v4.7.0/examples/"></a> {% endcomment %}
+  <style>
+    .mybutton {
+      color: white;
+      background-color: brown;
+      border: 1px solid white;
+      width: 100%;
+      padding: 5px
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <div class="container">
+      <a class="navbar-brand" href="home"><h1>MER</h1></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+        aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="oi oi-menu"></span> Menu
+      </button>
+      <div class="collapse navbar-collapse" id="ftco-nav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active"><a href="/home" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="/category" class="nav-link">Shop</a></li>
+          
+           {% if not request.session.userid %}
+          <li class="nav-item"><a href="/login" class="nav-link">Login</a></li>
+          <li class="nav-item"><a href="/register" class="nav-link">Register</a></li>
+           {% endif %}
+           {% if request.session.userid %}
+          <li class="nav-item"><a href="/cart" class="nav-link">Cart</a></li>
+          <li class="nav-item"><a href="/checkout" class="nav-link">Checkout</a></li>
+          <li class="nav-item"><a href="/user_change_password" class="nav-link">Change Password</a></li>
+          <li class="nav-item"><a href="/user_logout" class="nav-link">Logout</a></li>
+           {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+  {% block content %}
+
+  {% endblock %}
+  <script src="{% static 'frontend_theme/js/jquery.min.js' %}"></script>
+  <script>
+    $(document).ready(function () {
+        //add to cart code 
+        $(".btnaddtocart").click(function(){
+          var url = "{% url 'addtocart' %}";
+          var data = {}; //empty object
+          data['productid'] = $(this).attr("data-productid"); //int value into object 
+          $.get(url,data,function(response,status){
+              console.log("success" + response[0].success);
+              console.log("message" + response[0].message);
+              alert(response[0].message);
+          });
+        });
+
+        var grandtotal=0;
+        //cart 
+        $("#cart").find("tr").each(function(index){
+           grandtotal = grandtotal + parseInt($(this).find("td").eq(5).html());
+        });
+        $("#grandtotal").html(grandtotal);
+
+        //delete from cart 
+        $(".btnremovefromcart").click(function(){
+            var cartid = $(this).attr("data-cartid");
+            var data = {}; //empty object
+            data['cartid'] = cartid;
+            var url = "{% url 'deletefromcart' %}";
+            var row = $(this).parent();
+            var total = parseInt($(this).parent().find("td").eq(5).html());
+            var grandtotal = parseInt($("#grandtotal").html());
+            grandtotal = grandtotal - total;
+            $.get(url,data,function(response,status){
+              console.log(response);
+              $(row).remove();
+              $("#grandtotal").html(grandtotal);
+          });
+        });
+    });
+</script>
+  <script
+    src="{% static 'frontend_theme/js/jquery-migrate-3.0.1.min.js%2bpopper.min.js%2bbootstrap.min.js%2bjquery.easing.1.3.js.pagespeed.jc.5hHtSZdmwp.js' %}"></script>
+  <script>eval(mod_pagespeed_biXpWqTu0z);</script>
+  <script>eval(mod_pagespeed_73bmy1BcRI);</script>
+  <script>eval(mod_pagespeed_cz$y0DHlGo);</script>
+  <script>eval(mod_pagespeed_xEwDGLI4eC);</script>
+  <script
+    src="{% static 'frontend_theme/js/jquery.waypoints.min.js%2bjquery.stellar.min.js%2bowl.carousel.min.js%2bjquery.magnific-popup.min.js.pagespeed.jc.sKk0xIJllE.js' %}"></script>
+  <script>eval(mod_pagespeed_uP8m907atr);</script>
+  <script>eval(mod_pagespeed_RVDwHwfXuE);</script>
+  <script>eval(mod_pagespeed_7ee5vP483y);</script>
+  <script>eval(mod_pagespeed_JCzfSFPg2h);</script>
+  <script
+    src="{% static 'frontend_theme/js/aos.js%2bjquery.animateNumber.min.js%2bbootstrap-datepicker.js%2bscrollax.min.js%2bgoogle-map.js%2bmain.js.pagespeed.jc.lYVC4LS8ef.js' %}"></script>
+  <script>eval(mod_pagespeed_yW2lR$Kjbw);</script>
+  <script>eval(mod_pagespeed_4WzhZ69ygE);</script>
+  <script>eval(mod_pagespeed_IvuvUn0V7O);</script>
+  <script>eval(mod_pagespeed_tv_DyLK0Ud);</script>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&amp;sensor=false"></script>
+  <script>eval(mod_pagespeed_FgsA2Kca7t);</script>
+  <script>eval(mod_pagespeed_nbXqxUO_Ul);</script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-23581568-13');
+  </script>
+  <script defer src="../../../static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"rayId":"671b9bdd7afc0f08","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2021.6.0","si":10}'></script>
+<script>
+function merFunction() {
+  var x = document.getElementById("merInput");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script>
+</body>
+
+</html>

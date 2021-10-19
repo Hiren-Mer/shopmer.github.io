@@ -1,0 +1,36 @@
+{% extends 'frontend_parent.html' %}
+{% load static %}
+{% block content %}
+<div class="hero-wrap hero-bread" style="background-image:url({% static 'frontend_theme/images/xbg_6.jpg.pagespeed.ic.FoMmN96gAy.jpg' %}) ">
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <h1 class="mb-0 bread">{{ blog.title }}</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="ftco-section bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 mb-5 ftco-animate">
+                <a href="images/menu-2.html" class="image-popup"><img
+                        src="http://127.0.0.1:8000/media/{{ blog.photo }}" class="img-fluid"
+                        alt="Colorlib Template"></a>
+            </div>
+            <div class="col-lg-6 product-details pl-md-5 ftco-animate">
+                <form action="" method="post">
+                    {% csrf_token %}
+                
+                <h3>{{ blog.title }}</h3>
+                <p ><span>{{ blog.author }}</span></p>
+                <p> {{ blog.detail }}</p>
+                <p> {{ blog.content }}</p>
+                
+                <input type="hidden" name="blogid" value="{{ blog.id }}">
+            </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

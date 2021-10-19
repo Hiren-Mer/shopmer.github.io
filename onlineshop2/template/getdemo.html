@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>get demo</title>
+</head>
+
+<body>
+    <table border="2" cellpadding=10 align=center width='80%'>
+        <tr>
+            <td>
+                <input type="text" placeholder="Search Product" id="txtproduct">
+                <input type="button" id="btnsearch" value="Search Product">
+                <input type="button" id="add" value="Add Product">
+            </td>
+        </tr>
+        <tr>
+            <td align="center" id="output">
+                output will come here
+            </td>
+        </tr>
+    </table>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            //ajax get method
+            var url = "{% url 'getmethoddemo' %}";
+            $("#btnsearch").click(function () 
+            {
+                var data = {}; //empty object
+                data['name'] = $("#txtproduct").val(); //int value into object 
+                console.log(data);
+                $.get(url,data, function (response, status) {
+                    $("#output").html(response);
+                });
+            });
+            $("#add").click(function () 
+            {
+                var data = {}; //empty object
+                data['name'] = $("#txtproduct").val(); //int value into object 
+                console.log(data);
+                $.get(url,data, function (response, status) {
+                    $("#output").html(response);
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
